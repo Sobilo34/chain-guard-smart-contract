@@ -21,17 +21,17 @@ To run decentralized risk monitoring, the app must (1) **request** an analysis i
 
 - **ChainGuardRegistry** (if used) holds the list of monitored contracts and alerts; the app can sync with it for a single source of truth on-chain.
 
-Together with the [chain-guard-cre](https://github.com/your-org/chain-guard-cre) workflow, this satisfies the hackathon requirement: **build/simulate/deploy a CRE workflow** that integrates blockchain with external systems (e.g. Chainlink Data Feeds, LLM/AI), with the workflow triggered and its result stored on-chain.
+Together with the [chain-guard-cre](https://github.com/Sobilo34/chain-guard-cre) workflow, this satisfies the hackathon requirement: **build/simulate/deploy a CRE workflow** that integrates blockchain with external systems (e.g. Chainlink Data Feeds, LLM/AI), with the workflow triggered and its result stored on-chain.
 
 ---
 
 ## Link to all files that use Chainlink
 
-| File | Purpose |
-|------|--------|
+| File                                                           | Purpose                                                                                                                     |
+| -------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
 | [src/ChainGuardCREConsumer.sol](src/ChainGuardCREConsumer.sol) | CRE consumer: `requestRiskAnalysis`, `onReport`, `getAssessment`, `RiskAnalysisRequested` / `RiskAssessmentReceived` events |
-| [src/IReceiver.sol](src/IReceiver.sol) | Interface for `onReport` (Chainlink forwarder) |
-| [script/Deploy.s.sol](script/Deploy.s.sol) | Deploy script (Registry + Consumer, set forwarder for CRE) |
+| [src/IReceiver.sol](src/IReceiver.sol)                         | Interface for `onReport` (Chainlink forwarder)                                                                              |
+| [script/Deploy.s.sol](script/Deploy.s.sol)                     | Deploy script (Registry + Consumer, set forwarder for CRE)                                                                  |
 
 ---
 
@@ -86,7 +86,7 @@ source .env && forge script script/Deploy.s.sol --rpc-url "$SEPOLIA_RPC_URL" --b
    - `NEXT_PUBLIC_CRE_CONSUMER_CHAIN_ID=11155111`
    - `SEPOLIA_RPC_URL` (or Alchemy) and, for automation, `CRE_AUTOMATION_PRIVATE_KEY`
 
-4. Configure the CRE workflow in [chain-guard-cre](https://github.com/your-org/chain-guard-cre): set `creConsumerAddress` and `chainSelectorName` (e.g. `ethereum-testnet-sepolia`) in the EVM-triggered config so the workflow listens for `RiskAnalysisRequested` and writes reports to this consumer.
+4. Configure the CRE workflow in [chain-guard-cre](https://github.com/Sobilo34/chain-guard-cre): set `creConsumerAddress` and `chainSelectorName` (e.g. `ethereum-testnet-sepolia`) in the EVM-triggered config so the workflow listens for `RiskAnalysisRequested` and writes reports to this consumer.
 
 ---
 
@@ -105,8 +105,8 @@ Frontend ← getAssessment(requestId) ← Consumer
 
 ## Related repositories
 
-- **[chain-guard](https://github.com/your-org/chain-guard)** – Frontend; calls `requestRiskAnalysis`, polls `getAssessment`, runs CRE listener for local simulate.
-- **[chain-guard-cre](https://github.com/your-org/chain-guard-cre)** – CRE workflow (EVM trigger, Chainlink feeds, AI, report write).
+- **[chain-guard](https://github.com/Sobilo34/chain-guard)** – Frontend; calls `requestRiskAnalysis`, polls `getAssessment`, runs CRE listener for local simulate.
+- **[chain-guard-cre](https://github.com/Sobilo34/chain-guard-cre)** – CRE workflow (EVM trigger, Chainlink feeds, AI, report write).
 
 ---
 
