@@ -2,7 +2,9 @@
 
 **On-chain registry and Chainlink CRE consumer for ChainGuard Sentinel.**
 
-This repository contains the Solidity contracts that connect the ChainGuard frontend to the Chainlink Runtime Environment (CRE): users (or the app’s cron) request risk analysis by calling a consumer contract; CRE runs the workflow and delivers the report back on-chain. No custom backend is required.
+This repository contains the Solidity contracts that connect the ChainGuard frontend to the Chainlink Runtime Environment (CRE): users (or the app’s cron) request risk analysis by calling a consumer contract; CRE runs the workflow and delivers the report back on-chain. The contract acts as the request/response bridge so the risk pipeline lives in the CRE workflow rather than a separate always-on server.
+
+**Live app:** [chain-guard-pa03.onrender.com](https://chain-guard-pa03.onrender.com/) · **Demo video:** [Google Drive](https://drive.google.com/file/d/1QzXykooArCrM57OPvpoO5ILw7Lsbeo3Q/view?usp=drive_link)
 
 ---
 
@@ -45,6 +47,8 @@ chain-guard-smart-contract/
 │   └── IReceiver.sol              # onReport interface
 ├── script/
 │   └── Deploy.s.sol               # Deploy and verify
+├── test/
+│   └── ChainGuardRegistry.t.sol   # Foundry tests for the registry
 ├── .env.example
 ├── deploy.sh
 └── README.md
@@ -110,6 +114,10 @@ Frontend ← getAssessment(requestId) ← Consumer
 
 ---
 
+## Author
+
+Built by **Bilal Oyeleke Soliu** — [github.com/Sobilo34](https://github.com/Sobilo34) · Contact: `<CONTACT_URL>`
+
 ## License
 
-MIT.
+Released under the [MIT License](LICENSE) © 2026 Bilal Oyeleke Soliu.
